@@ -23,7 +23,6 @@
 <resources>
     <string name="app_name">EzGingerbread Extras</string>
     <string name="displayparts">Display Adv. Parts:</string>
-
     <string name="pref_cm_battery_title">Prozentanzeige der Batterie</string>
     <string name="pref_cm_battery_summary">Auswahl zwischen Mini-Batteriesymbol mit Prozentanzeige oder Original-Batteriesymbol in der Statusleiste</string>
     <string name="pref_clock_title">Uhrzeit anzeigen</string>
@@ -32,7 +31,7 @@
     <string name="spareparts">Spare Parts:</string>
 
     <!--Begin Spare Parts strings-->
-    <string name="title_window_animations">Fensteranimationen</string>
+     <string name="title_window_animations">Fenteranimationen</string>
     <string name="summary_window_animations">Geschwindigkeit der Animationen</string>
     <string name="dialog_title_window_animations">Auswahl der Fenstergeschwindigkeit</string>
 
@@ -90,7 +89,11 @@
     <string name="title_toggle_screentimeout">Bildschirm Timeout</string>
     <string name="title_toggle_mobiledata">Mobile Daten</string>
     <string name="title_toggle_lockscreen">Lockscreen</string>
+<<<<<<< HEAD
     <string name="title_toggle_networkmode">2G/3G</string>
+=======
+    <string name="title_toggle_networkmode"2G/3G</string>
+>>>>>>> some additional translations
     <string name="title_toggle_autorotate">Drehen der Anzeige</string>
     <string name="title_toggle_airplane">Flugzeugmodus</string>
     <string name="title_toggle_flashlight">LED Taschenlampe</string>
