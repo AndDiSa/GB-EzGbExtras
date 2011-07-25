@@ -105,4 +105,17 @@
     <string name="pref_flash_mode_title">Flash mode</string>
     <string name="pref_flash_mode_summary">Choose High / Death Ray (Evo)</string>
     <!--End Power Widgets-->
+    <!-- performance settings -->
+    <string name="perfctl_title">Performance Settings</string>
+    <string name="dialog_compcache_memctl_state">Compcache/Swap</string>
+    <string name="title_compcache_size">ZRAM / Compcache RAM Usage</string>
+    <string name="summary_compcache_size">Compress memory for increased virtual capacity (requires reboot)</string>
+
+    <!-- Performance Settings : JIT Mode -->
+    <string name="pref_jit_mode_title">Use JIT</string>
+    <string name="pref_jit_mode_summary">Use the Dalvik just-in-time compiler (requires reboot)</string>
+
+    <!-- Performance Settings : VM Heap Size -->
+    <string name="pref_heapsize_title">VM heap size</string>
+    <string name="pref_heapsize_summary">Maximum amount of memory per VM heap (requires reboot)</string>
 </resources>
