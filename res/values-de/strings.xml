@@ -89,11 +89,7 @@
     <string name="title_toggle_screentimeout">Bildschirm Timeout</string>
     <string name="title_toggle_mobiledata">Mobile Daten</string>
     <string name="title_toggle_lockscreen">Lockscreen</string>
-<<<<<<< HEAD
     <string name="title_toggle_networkmode">2G/3G</string>
-=======
-    <string name="title_toggle_networkmode"2G/3G</string>
->>>>>>> some additional translations
     <string name="title_toggle_autorotate">Drehen der Anzeige</string>
     <string name="title_toggle_airplane">Flugzeugmodus</string>
     <string name="title_toggle_flashlight">LED Taschenlampe</string>
