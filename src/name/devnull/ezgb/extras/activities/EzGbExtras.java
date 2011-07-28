@@ -61,6 +61,9 @@ public class EzGbExtras extends PreferenceActivity
     private static final String END_BUTTON_PREF = "end_button";
     private static final String KEY_COMPATIBILITY_MODE = "compatibility_mode";
 
+    private static final String PREF_CM_BATTERY = "pref_cm_battery";
+    private static final String PREF_CLOCK = "pref_clock";
+
     private static final String PERFORMANCE_SETTINGS_CATEGORY = "performance_settings_category";
     private static final String MEMCTL_STATE_PREF = "memctl_state";
     private static final String MEMCTL_SIZE_PREF = "memctl_size";
@@ -80,6 +83,8 @@ public class EzGbExtras extends PreferenceActivity
 
     private final Configuration mCurConfig = new Configuration();
 
+    private CheckBoxPreference mCmBatteryPref;
+    private CheckBoxPreference mClockPref;
     private ListPreference mWindowAnimationsPref;
     private ListPreference mTransitionAnimationsPref;
     private CheckBoxPreference mFancyImeAnimationsPref;
@@ -118,6 +123,9 @@ public class EzGbExtras extends PreferenceActivity
         PreferenceCategory pscCategory = (PreferenceCategory)prefSet.findPreference(PERFORMANCE_SETTINGS_CATEGORY);
         mCompcachePref = (ListPreference) prefSet.findPreference(COMPCACHE_PREF);
         mJitPref = (CheckBoxPreference) prefSet.findPreference(JIT_PREF);
+
+        mCmBatteryPref = (CheckBoxPreference) prefSet.findPreference(PREF_CM_BATTERY);
+        mClockPref = (CheckBoxPreference) prefSet.findPreference(PREF_CLOCK);
 
         String jitMode = SystemProperties.get(JIT_PERSIST_PROP, SystemProperties.get(JIT_PROP, JIT_ENABLED));
         mJitPref.setChecked(JIT_ENABLED.equals(jitMode));
@@ -174,6 +182,16 @@ public class EzGbExtras extends PreferenceActivity
             Settings.System.putInt(getContentResolver(),
                     Settings.System.COMPATIBILITY_MODE,
                     mCompatibilityMode.isChecked() ? 1 : 0);
+            return true;
+        } else if (preference == mCmBatteryPref) {
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.STATUS_BAR_CM_BATTERY,
+                    mCmBatteryPref.isChecked() ? 1 : 0);
+            return true;
+        } else if (preference == mClockPref) {
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.STATUS_BAR_CLOCK,
+                    mClockPref.isChecked() ? 1 : 0);
             return true;
         } else if (preference == mJitPref) {
             SystemProperties.set(JIT_PERSIST_PROP,

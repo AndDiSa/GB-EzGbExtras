@@ -31,6 +31,10 @@
                 android:targetPackage="name.devnull.ezgb.extras"
                 android:targetClass="name.devnull.ezgb.extras.activities.UIPowerWidgetActivity" />
         </PreferenceScreen>
+        <CheckBoxPreference android:key="pref_cm_battery"
+            android:title="@string/pref_cm_battery_title" android:summary="@string/pref_cm_battery_summary" />
+        <CheckBoxPreference android:key="pref_clock"
+            android:title="@string/pref_clock_title" android:summary="@string/pref_clock_summary" />
     </PreferenceCategory>
     <PreferenceCategory android:key="performance_settings_category"
         android:title="@string/perfctl_title">

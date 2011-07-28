@@ -23,6 +23,12 @@
 <resources>
     <string name="app_name">EzGingerbread Extras</string>
     <string name="displayparts">Display Adv. Parts:</string>
+
+    <string name="pref_cm_battery_title">Show Percentage</string>
+    <string name="pref_cm_battery_summary">Whether to use standard battery or mini battery with percentage in status bar</string>
+    <string name="pref_clock_title">Show clock</string>
+    <string name="pref_clock_summary">Whether to show current time in status bar or not</string>
+
     <string name="spareparts">Spare Parts:</string>
 
     <!--Begin Spare Parts strings-->
