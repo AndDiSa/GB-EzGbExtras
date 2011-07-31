@@ -23,10 +23,16 @@
 <resources>
     <string name="app_name">EzGingerbread Extras</string>
     <string name="displayparts">Display Adv. Parts:</string>
+
+    <string name="pref_cm_battery_title">Prozentanzeige der Batterie</string>
+    <string name="pref_cm_battery_summary">Auswahl zwischen Mini-Batteriesymbol mit Prozentanzeige oder Original-Batteriesymbol in der Statusleiste</string>
+    <string name="pref_clock_title">Uhrzeit anzeigen</string>
+    <string name="pref_clock_summary">Auswahl, ob Uhrzeit in der Statusleiste angezeigt werden soll, oder nicht</string>
+
     <string name="spareparts">Spare Parts:</string>
 
     <!--Begin Spare Parts strings-->
-     <string name="title_window_animations">Fenteranimationen</string>
+    <string name="title_window_animations">Fensteranimationen</string>
     <string name="summary_window_animations">Geschwindigkeit der Animationen</string>
     <string name="dialog_title_window_animations">Auswahl der Fenstergeschwindigkeit</string>
 
