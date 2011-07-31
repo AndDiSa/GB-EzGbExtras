@@ -21,11 +21,17 @@
 <resources>
     <string name="app_name">EzGingerbread Extras</string>
     <string name="displayparts">Display Adv. Parts:</string>
+
+    <string name="pref_cm_battery_title">Mostra carica batteria in percentuale</string>
+    <string name="pref_cm_battery_summary">Scegli se viene mostrato nella barra di stato una icona piccola con percentuale o una icona grande</string>
+    <string name="pref_clock_title">Visualizza l\'orologio</string>
+    <string name="pref_clock_summary">Scegli se viene mostrato l\'lorologio nella barra di stato</string>
+
     <string name="spareparts">Spare Parts:</string>
 
     <!--Begin Spare Parts strings-->
-     <string name="title_window_animations">Animazioni finiestre </string>
-    <string name="summary_window_animations">Velocità di animazioni nelle singole finestre</string>
+    <string name="title_window_animations">Animazioni finestre</string>
+    <string name="summary_window_animations">Velocità di animazione nelle singole finestre</string>
     <string name="dialog_title_window_animations">Seleziona velocità finestre</string>
 
     <string name="title_transition_animations">Animazione di transizione</string>
