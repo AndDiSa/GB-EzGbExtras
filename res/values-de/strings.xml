@@ -31,7 +31,7 @@
     <string name="spareparts">Spare Parts:</string>
 
     <!--Begin Spare Parts strings-->
-     <string name="title_window_animations">Fenteranimationen</string>
+    <string name="title_window_animations">Fensteranimationen</string>
     <string name="summary_window_animations">Geschwindigkeit der Animationen</string>
     <string name="dialog_title_window_animations">Auswahl der Fenstergeschwindigkeit</string>
 
