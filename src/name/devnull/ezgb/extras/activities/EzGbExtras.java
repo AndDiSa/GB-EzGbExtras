@@ -32,10 +32,12 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
 import android.os.RemoteException;
 import android.os.ServiceManager;
+import android.os.SystemProperties;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceCategory;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
@@ -43,9 +45,9 @@ import android.provider.Settings.SettingNotFoundException;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.IWindowManager;
-
 import name.devnull.ezgb.extras.R;
 
+import java.io.File;
 import java.util.List;
 
 public class EzGbExtras extends PreferenceActivity
@@ -89,8 +91,13 @@ public class EzGbExtras extends PreferenceActivity
     private CheckBoxPreference mHapticFeedbackPref;
     private ListPreference mEndButtonPref;
     private CheckBoxPreference mCompatibilityMode;
+    private ListPreference mCompcachePref;
+    private CheckBoxPreference mJitPref;
+    private ListPreference mHeapsizePref;
 
     private IWindowManager mWindowManager;
+
+    private int swapAvailable = -1;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -154,6 +161,16 @@ public class EzGbExtras extends PreferenceActivity
             writeAnimationPreference(1, objValue);
         } else if (preference == mEndButtonPref) {
             writeEndButtonPreference(objValue);
+        } else if (preference == mCompcachePref) {
+            if (objValue != null) {
+                SystemProperties.set(COMPCACHE_PERSIST_PROP, (String)objValue);
+                return true;
+            }
+        } else if (preference == mHeapsizePref) {
+            if (objValue != null) {
+                SystemProperties.set(HEAPSIZE_PERSIST_PROP, (String)objValue);
+                return true;
+            }
         }
         // always let the preference setting proceed.
         return true;
@@ -251,5 +268,15 @@ public class EzGbExtras extends PreferenceActivity
         readEndButtonPreference(mEndButtonPref);
         Log.i(TAG,"Resuming: Get Toggle states");
         updateToggles();
+    }
+
+    /**
+    * Check if swap support is available on the system
+    */
+    private boolean isSwapAvailable() {
+        if (swapAvailable < 0) {
+            swapAvailable = new File("/proc/swaps").exists() ? 1 : 0;
+        }
+        return swapAvailable > 0;
     }
 }
