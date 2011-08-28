@@ -39,16 +39,6 @@
         <item>Extrem groß</item>
     </string-array>
 
-    <string-array name="entryvalues_font_size">
-        <item>0.70</item>
-        <item>0.85</item>
-        <item>0.95</item>
-        <item>1.0</item>
-        <item>1.05</item>
-        <item>1.15</item>
-        <item>1.30</item>
-    </string-array>
-    
     <string-array name="entries_end_button">
         <item>Nichts</item>
         <item>Home</item>
@@ -56,18 +46,11 @@
         <item>Home, dann Ruhemodus</item>
     </string-array>
     
-    <string-array name="entryvalues_end_button">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array>
-
     <!-- End spare parts arrays-->
     <string-array name="entries_network_widget">
         <item>2G/3G+2G</item>
-        <item>2G/3G Only</item>
-        <item>2G/3G Only/3G+2G</item>
+        <item>Nur 2G/3G</item>
+        <item>Nur 2G/3G/3G+2G</item>
     </string-array>
 
     <string-array name="entries_ring_widget">
