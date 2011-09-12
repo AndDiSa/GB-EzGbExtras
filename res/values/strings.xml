@@ -126,7 +126,7 @@
     <string name="pref_heapsize_summary">Maximum amount of memory per VM heap (requires reboot)</string>
 
     <string name="permissions_settings_title_head">Permissions</string>
-    <string name="permissions_settings_title_subhead">Permissions managment settings</string>
+    <string name="permissions_settings_title_subhead">Permissions management settings</string>
 
     <!-- Permissions Management Settings strings -->
     <string name="perm_enable_management">Enable managment</string>

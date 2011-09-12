@@ -6,7 +6,7 @@
         android:title="@string/general_title">
 
          <!-- Enable permissions management -->
-         <CheckBoxPreference android:key="enable_permissions_managment"
+         <CheckBoxPreference android:key="enable_permissions_management"
              android:title="@string/perm_enable_management"
              android:summary="@string/perm_enable_management_summary" />
 
