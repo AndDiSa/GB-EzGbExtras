@@ -94,4 +94,12 @@
                 android:summaryOn="@string/compatibility_mode_summary_on"
                 android:summaryOff="@string/compatibility_mode_summary_off" />
     </PreferenceCategory>
+
+    <PreferenceScreen android:key="permissions_settings"
+	        android:title="@string/permissions_settings_title_head"
+	        android:summary="@string/permissions_settings_title_subhead">
+	        <intent android:action="android.intent.action.MAIN"
+	            android:targetPackage="name.devnull.ezgb.extras"
+	            android:targetClass="name.devnull.ezgb.extras.activities.PermissionsActivity" />
+    </PreferenceScreen>
 </PreferenceScreen>
