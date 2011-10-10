@@ -45,6 +45,7 @@ import android.provider.Settings.SettingNotFoundException;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.IWindowManager;
+
 import name.devnull.ezgb.extras.R;
 
 import java.io.File;
@@ -60,6 +61,7 @@ public class EzGbExtras extends PreferenceActivity
     private static final String HAPTIC_FEEDBACK_PREF = "haptic_feedback";
     private static final String END_BUTTON_PREF = "end_button";
     private static final String KEY_COMPATIBILITY_MODE = "compatibility_mode";
+    private static final String KEY_KSM_ENABLE_PREF = "ksmenable_toggle";
 
     private static final String PREF_CM_BATTERY = "pref_cm_battery";
     private static final String PREF_CLOCK = "pref_clock";
@@ -91,7 +93,11 @@ public class EzGbExtras extends PreferenceActivity
     private CheckBoxPreference mHapticFeedbackPref;
     private ListPreference mEndButtonPref;
     private CheckBoxPreference mCompatibilityMode;
-    private ListPreference mCompcachePref;
+    private CheckBoxPreference mKSMEnable;
+        private ListPreference mCompcachePref;
+    private CheckBoxPreference mJitPref;
+    private ListPreference mHeapsizePref;
+
     private CheckBoxPreference mJitPref;
     private ListPreference mHeapsizePref;
 
@@ -144,7 +150,8 @@ public class EzGbExtras extends PreferenceActivity
         }
 
         mWindowManager = IWindowManager.Stub.asInterface(ServiceManager.getService("window"));
-
+        mKSMEnable = (CheckBoxPreference) prefSet.findPreference(KEY_KSM_ENABLE_PREF);
+        mKSMEnable.setChecked(SystemProperties.get("persist.sys.ksmenable","0").equals("1"));
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
     }
 
@@ -152,6 +159,7 @@ public class EzGbExtras extends PreferenceActivity
         mHapticFeedbackPref.setChecked(Settings.System.getInt(
                 getContentResolver(), 
                 Settings.System.HAPTIC_FEEDBACK_ENABLED, 0) != 0);
+        mKSMEnable.setChecked(SystemProperties.get("persist.sys.ksmenable","0").equals("1"));
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
@@ -183,6 +191,8 @@ public class EzGbExtras extends PreferenceActivity
                     Settings.System.COMPATIBILITY_MODE,
                     mCompatibilityMode.isChecked() ? 1 : 0);
             return true;
+        } else if(preference == mKSMEnable) {
+            SystemProperties.set("persist.sys.ksmenable",mKSMEnable.isChecked() ? "1" : "0");
         } else if (preference == mCmBatteryPref) {
             Settings.System.putInt(getContentResolver(),
                     Settings.System.STATUS_BAR_CM_BATTERY,
