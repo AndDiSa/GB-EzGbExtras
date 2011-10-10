@@ -94,10 +94,7 @@ public class EzGbExtras extends PreferenceActivity
     private ListPreference mEndButtonPref;
     private CheckBoxPreference mCompatibilityMode;
     private CheckBoxPreference mKSMEnable;
-        private ListPreference mCompcachePref;
-    private CheckBoxPreference mJitPref;
-    private ListPreference mHeapsizePref;
-
+    private ListPreference mCompcachePref;
     private CheckBoxPreference mJitPref;
     private ListPreference mHeapsizePref;
 
