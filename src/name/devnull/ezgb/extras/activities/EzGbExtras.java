@@ -44,6 +44,7 @@ import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 import android.view.IWindowManager;
 
 import name.devnull.ezgb.extras.R;
@@ -82,6 +83,9 @@ public class EzGbExtras extends PreferenceActivity
     private static final String HEAPSIZE_PROP = "dalvik.vm.heapsize";
     private static final String HEAPSIZE_PERSIST_PROP = "persist.sys.vm.heapsize";
     private static final String HEAPSIZE_DEFAULT = "18m";
+    private static final String KEY_COMPCACHE = "persist_system_compcache";
+    private static final String KEY_USERNTPD = "userntpd_toggle";
+    private static final String KEY_CALL_TOUCHUI ="force_incoming_call_touchui";
 
     private final Configuration mCurConfig = new Configuration();
 
@@ -92,11 +96,13 @@ public class EzGbExtras extends PreferenceActivity
     private CheckBoxPreference mFancyImeAnimationsPref;
     private CheckBoxPreference mHapticFeedbackPref;
     private ListPreference mEndButtonPref;
+    private ListPreference mCompCache;
     private CheckBoxPreference mCompatibilityMode;
     private CheckBoxPreference mKSMEnable;
-    private ListPreference mCompcachePref;
     private CheckBoxPreference mJitPref;
     private ListPreference mHeapsizePref;
+    private CheckBoxPreference mUserNTPd;
+    private CheckBoxPreference mCallTouchUI;
 
     private IWindowManager mWindowManager;
 
@@ -124,7 +130,6 @@ public class EzGbExtras extends PreferenceActivity
                 Settings.System.COMPATIBILITY_MODE, 1) != 0);
 
         PreferenceCategory pscCategory = (PreferenceCategory)prefSet.findPreference(PERFORMANCE_SETTINGS_CATEGORY);
-        mCompcachePref = (ListPreference) prefSet.findPreference(COMPCACHE_PREF);
         mJitPref = (CheckBoxPreference) prefSet.findPreference(JIT_PREF);
 
         mCmBatteryPref = (CheckBoxPreference) prefSet.findPreference(PREF_CM_BATTERY);
@@ -137,19 +142,19 @@ public class EzGbExtras extends PreferenceActivity
 		 SystemProperties.get(HEAPSIZE_PROP, HEAPSIZE_DEFAULT))); 
         mHeapsizePref.setOnPreferenceChangeListener(this);
 
-        if (isSwapAvailable()) {
-          if (SystemProperties.get(COMPCACHE_PERSIST_PROP) == "1")
-                SystemProperties.set(COMPCACHE_PERSIST_PROP, COMPCACHE_DEFAULT);
-            mCompcachePref.setValue(SystemProperties.get(COMPCACHE_PERSIST_PROP, COMPCACHE_DEFAULT));
-            mCompcachePref.setOnPreferenceChangeListener(this);
-        } else {
-            pscCategory.removePreference(mCompcachePref);
-        }
-
         mWindowManager = IWindowManager.Stub.asInterface(ServiceManager.getService("window"));
         mKSMEnable = (CheckBoxPreference) prefSet.findPreference(KEY_KSM_ENABLE_PREF);
         mKSMEnable.setChecked(SystemProperties.get("persist.sys.ksmenable","0").equals("1"));
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+        mCompCache = (ListPreference) prefSet.findPreference(KEY_COMPCACHE);
+        mCompCache.setOnPreferenceChangeListener(this);
+        mUserNTPd = (CheckBoxPreference) prefSet.findPreference(KEY_USERNTPD);
+        mUserNTPd.setChecked(SystemProperties.get("persist.sys.userntpd.enable","0").equals("1"));
+        mCallTouchUI = (CheckBoxPreference) prefSet.findPreference(
+                                                    KEY_CALL_TOUCHUI);
+        mCallTouchUI.setChecked(Settings.System.getInt(getContentResolver(),
+                                Settings.System.PHONE_FORCE_INCOMING_CALL_UI,0)
+                                == 1);
     }
 
     private void updateToggles() {
@@ -157,6 +162,10 @@ public class EzGbExtras extends PreferenceActivity
                 getContentResolver(), 
                 Settings.System.HAPTIC_FEEDBACK_ENABLED, 0) != 0);
         mKSMEnable.setChecked(SystemProperties.get("persist.sys.ksmenable","0").equals("1"));
+        mUserNTPd.setChecked(SystemProperties.get("persist.sys.userntpd.enable","0").equals("1"));
+        mCallTouchUI.setChecked(Settings.System.getInt(getContentResolver(),
+                                Settings.System.PHONE_FORCE_INCOMING_CALL_UI,0)
+                                == 1);
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
@@ -166,16 +175,13 @@ public class EzGbExtras extends PreferenceActivity
             writeAnimationPreference(1, objValue);
         } else if (preference == mEndButtonPref) {
             writeEndButtonPreference(objValue);
-        } else if (preference == mCompcachePref) {
-            if (objValue != null) {
-                SystemProperties.set(COMPCACHE_PERSIST_PROP, (String)objValue);
-                return true;
-            }
         } else if (preference == mHeapsizePref) {
             if (objValue != null) {
                 SystemProperties.set(HEAPSIZE_PERSIST_PROP, (String)objValue);
                 return true;
             }
+        } else if (preference == mCompCache) {
+            writeCompCacheButtonPreference(objValue);
         }
         // always let the preference setting proceed.
         return true;
@@ -205,6 +211,22 @@ public class EzGbExtras extends PreferenceActivity
                     mJitPref.isChecked() ? JIT_ENABLED : JIT_DISABLED);
             return true;
         }
+        else if(preference == mUserNTPd) {
+            SystemProperties.set("persist.sys.userntpd.enable",mUserNTPd.isChecked() ? "1" : "0");
+        }
+        else if(preference == mCallTouchUI) {
+            Settings.System.putInt(getContentResolver(),
+                     Settings.System.PHONE_FORCE_INCOMING_CALL_UI,
+                     mCallTouchUI.isChecked() ? 1 : 0);
+
+            if(mCallTouchUI.isChecked() == false){
+                Context context = getApplicationContext();
+                Toast toast = Toast.makeText(context,
+                    context.getString(R.string.toast_reboot_required),
+                    Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        }
         return false;
     }
 
@@ -225,7 +247,22 @@ public class EzGbExtras extends PreferenceActivity
         } catch (NumberFormatException e) {
         }
     }
-    
+
+    public void writeCompCacheButtonPreference(Object objValue) {
+        try {
+            int val = Integer.parseInt(objValue.toString());
+            Context context = getApplicationContext();
+            Toast toast = Toast.makeText(context,
+                context.getString(R.string.toast_reboot_required),
+                Toast.LENGTH_SHORT);
+
+            Settings.Secure.putInt(getContentResolver(), 
+                    Settings.Secure.ZRAM_SIZE, val);
+            toast.show();
+        } catch (NumberFormatException e) {
+        }
+    }
+
     int floatToIndex(float val, int resid) {
         String[] indices = getResources().getStringArray(resid);
         float lastVal = Float.parseFloat(indices[0]);
@@ -256,6 +293,37 @@ public class EzGbExtras extends PreferenceActivity
         }
     }
 
+    public void readCompCachePreference(ListPreference pref) {
+        int val;
+        int i;
+        if(SystemProperties.get("status.zram.device.exists","0")
+                           .equals("0")){
+            try{
+                getPreferenceScreen().removePreference(pref);
+                return;
+            } catch (Exception e) {
+            }
+        }
+        val = Settings.Secure.getInt(getContentResolver(),
+                                     Settings.Secure.ZRAM_SIZE, 0);
+        Log.i(TAG,"CC Read value: " + Integer.toString(val));
+        try{
+            String[] indices = getResources().getStringArray(R.array.entryvalues_compcache_size);
+            for (i=1; i<indices.length; i++) {
+                if(Integer.parseInt(indices[i]) == val){
+                    val=i;
+                    break;
+                }
+            }
+            if(i>=indices.length){
+                val=-1;
+            }
+            pref.setValueIndex(val);
+        } catch (ArrayIndexOutOfBoundsException e){
+            Log.w(TAG,"Invalid CompCache Size; ignoring");
+        }
+    }
+
     public void onSharedPreferenceChanged(SharedPreferences preferences, String key) {
         if (HAPTIC_FEEDBACK_PREF.equals(key)) {
             Settings.System.putInt(getContentResolver(),
@@ -273,6 +341,8 @@ public class EzGbExtras extends PreferenceActivity
         readAnimationPreference(1, mTransitionAnimationsPref);
         Log.i(TAG,"Resuming: Get End Button State");
         readEndButtonPreference(mEndButtonPref);
+        Log.i(TAG,"Update CompCache size");
+        readCompCachePreference(mCompCache);
         Log.i(TAG,"Resuming: Get Toggle states");
         updateToggles();
     }

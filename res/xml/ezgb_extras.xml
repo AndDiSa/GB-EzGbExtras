@@ -22,14 +22,6 @@
 -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory
-        android:title="@string/kernelparts">
-        <CheckBoxPreference
-            android:key="ksmenable_toggle"
-            android:title="@string/title_ksmenable_toggle"
-            android:summaryOn="@string/summaryon_ksmenable_toggle"
-            android:summaryOff="@string/summary_ksmenable_toggle"/>
-    </PreferenceCategory>
-    <PreferenceCategory
         android:title="@string/displayparts">
         <PreferenceScreen
             android:key="ui_power_widget_settings_menu"
@@ -46,24 +38,38 @@
     </PreferenceCategory>
     <PreferenceCategory android:key="performance_settings_category"
         android:title="@string/perfctl_title">
-
+        <CheckBoxPreference
+            android:key="force_incoming_call_touchui"
+            android:persistent="false"
+            android:title="@string/call_touchui_title"
+            android:summaryOn="@string/call_touchui_summary"
+            android:summaryOff="@string/call_touchui_summary" />
+        <CheckBoxPreference
+            android:key="userntpd_toggle"
+            android:persistent="false"
+            android:title="@string/userntpd_title"
+            android:summaryOn="@string/userntpd_summary"
+            android:summaryOff="@string/userntpd_summary" />
          <ListPreference
-            android:key="persist.system.compcache"
+            android:key="persist_system_compcache"
             android:persistent="true"
             android:title="@string/title_compcache_size"
             android:summary="@string/summary_compcache_size"
             android:entries="@array/entries_compcache_size"
             android:entryValues="@array/entryvalues_compcache_size"
             android:dialogTitle="@string/title_compcache_size" />
-            
         <CheckBoxPreference android:key="pref_jit_mode"
             android:title="@string/pref_jit_mode_title" android:summary="@string/pref_jit_mode_summary" />
-
         <ListPreference android:key="pref_heapsize"
             android:dialogTitle="@string/pref_heapsize_title"
             android:title="@string/pref_heapsize_title" android:summary="@string/pref_heapsize_summary"
             android:entries="@array/entries_heapsize"
             android:entryValues="@array/entries_heapsize" />
+        <CheckBoxPreference
+            android:key="ksmenable_toggle"
+            android:title="@string/title_ksmenable_toggle"
+            android:summaryOn="@string/summaryon_ksmenable_toggle"
+            android:summaryOff="@string/summary_ksmenable_toggle"/>
     </PreferenceCategory>
     <PreferenceCategory
         android:title="@string/spareparts">

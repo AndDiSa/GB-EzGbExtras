@@ -137,21 +137,31 @@
     <!-- End power widget arrays-->
     <!-- Performance settings -->
     <string-array name="entries_compcache_size">
-        <item>0 (off)</item>
-        <item>8 MB</item>
+        <item>0 (disabled)</item>
+        <item>8 MB (default)</item>
+        <item>10 MB</item>
         <item>12 MB</item>
+        <item>14 MB</item>
         <item>16 MB</item>
-        <item>20 MB</item>
+        <item>18 MB</item>
+        <item>20 MB (high)</item>
+        <item>22 MB</item>
         <item>24 MB</item>
+        <item>26 MB (very high)</item>
     </string-array>
 
     <string-array name="entryvalues_compcache_size">
         <item>0</item>
         <item>8</item>
+        <item>10</item>
         <item>12</item>
+        <item>14</item>
         <item>16</item>
+        <item>18</item>
         <item>20</item>
+        <item>22</item>
         <item>24</item>
+        <item>26</item>
     </string-array>
 
     <string-array name="entries_heapsize">
