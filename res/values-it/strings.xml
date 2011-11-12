@@ -118,7 +118,7 @@
     <string name="summaryon_ksmenable_toggle">Kernel SamePage Merging per risparmiare ram vera</string>
     <string name="userntpd_summary">Lancia Busybox NTP Client per correzione del l'orologgio</string>
     <string name="call_touchui_title">Incoming Call TouchUI</string>
-    <string name="call_touchui_summary"Attiva TouchUI per rispondere a chiamate</string>
+    <string name="call_touchui_summary">Attiva TouchUI per rispondere a chiamate</string>
     <string name="toast_reboot_required">Cambiamento é attiva dopo riavvio del telephono.</string>
     <string name="pref_jit_mode_title">Attiva JIT</string>
     <string name="pref_jit_mode_summary">Attiva Dalvik just-in-time compiler (richiede riavvio)</string>
