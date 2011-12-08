@@ -50,10 +50,6 @@
             android:title="@string/userntpd_title"
             android:summaryOn="@string/userntpd_summary"
             android:summaryOff="@string/userntpd_summary" />
-         <ListPreference
-    </PreferenceCategory>
-    <PreferenceCategory android:key="performance_settings_category"
-        android:title="@string/perfctl_title">
          <PreferenceScreen
             android:key="ui_cpufreq_menu"
             android:title="@string/cpufreq_menu"
