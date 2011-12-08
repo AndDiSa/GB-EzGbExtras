@@ -129,6 +129,5 @@
     <string name="perm_enable_management">Attiva gestione dei permessi</string>
     <string name="perm_enable_management_summary">Attiva gestione dei permessi delle applicazioni</string>
     <string name="perm_enable_warning_title">Sei sicura?</string>
-
 </resources>
 
