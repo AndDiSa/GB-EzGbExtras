@@ -129,5 +129,26 @@
     <string name="perm_enable_management">Attiva gestione dei permessi</string>
     <string name="perm_enable_management_summary">Attiva gestione dei permessi delle applicazioni</string>
     <string name="perm_enable_warning_title">Sei sicura?</string>
+
+    <string name="cpufreq_header">CPU velocità:</string>
+    <string name="enable_cpufreq_title">CPU velocità attivato</string>
+    <string name="cpufreq_menu">CPU velocità</string>
+    <string name="summary_cpufreq_menu">Applica CPU min/max velocità</string>
+    <string name="enable_cpufreq_summary">Controllo automatico della velocità CPU è attivato; prima di usare altri applicazioni di questo genere, deve essere disattivato.</string>
+    <string name="reset_cpufreq_title">Reset CPU impostazioni</string>
+    <string name="reset_cpufreq_summary">Attiva default CPU impostazioni della velocità basato al kernel default dopo riavvio</string>
+    <string name="cpufreq_current">Impostazioni CPU velocità:</string>
+    <string name="cpufreq_maxwake">CPU Max (schermo attivo)</string>
+    <string name="cpufreq_maxsleep">CPU Max (schermo disattivo)</string>
+    <string name="cpufreq_min">CPU Min velocità</string>
+    <string name="cpufreq_boot">Boot CPU velocità:</string>
+    <string name="cpufreq_boot_info_title">Impostazioni di avvio</string>
+    <string name="cpufreq_boot_title_max">Max (schermo attivo/disattivo): </string>
+    <string name="cpufreq_boot_title_min">Min (idle): </string>
+    <string name="cpufreq_boot_title_default">Kernel default viene applicato</string>
+    <string name="cpufreq_setboot_title">Applica quando avvia</string>
+    <string name="cpufreq_setboot_summary">Applica impostazioni quando riavvia</string>
+    <string name="cpufreq_notice_title">Messaggio dopo riavvio:</string>
+    <string name="cpufreq_notice_summary">CPU velocità non può essere applicata prima che il schermo si disattiva</string>
 </resources>
 

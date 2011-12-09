@@ -138,4 +138,24 @@
     <string name="perm_enable_management_summary">Aktiviert das Berechtigungsmanagement</string>
     <string name="perm_enable_warning_message">Achtung!\nDas Entziehen der meisten Berechtigungen kann zum Fehlverhalten der Applikation führen. Wenn sich eine Applikation, der Berechtigungen entzogen wurden, selbsttätig beendet, aktivieren Sie die benötigte Berechtigung wieder, oder verzichten Sie auf die Nutzung der Applikation.\nBitte senden Sie keine Bug-Reports wenn eine Applikation, der sie Berechtigungen entzogen haben, nicht wie gewünscht funktioniert!</string>
     <string name="perm_enable_warning_title">Sind Sie sicher?</string>
+    <string name="cpufreq_header">CPU Frequenz:</string>
+    <string name="enable_cpufreq_title">CPU Frequenz eingeschaltet</string>
+    <string name="cpufreq_menu">CPU Frequenzen</string>
+    <string name="summary_cpufreq_menu">Setze CPU min/max Frequenzen</string>
+    <string name="enable_cpufreq_summary">Automatische CPU Frequenzanpassung eingeschaltet; bitte ausschalten bevor andere CPU-Kontrollprogramme verwendet werden</string>
+    <string name="reset_cpufreq_title">CPU Einstellungen zurücksetzen</string>
+    <string name="reset_cpufreq_summary">CPU Frequenzen auf Basis der Default-Einstellugnen beim nächten Boot zurücksetzen</string>
+    <string name="cpufreq_current">Aktuelle CPU Frequenz:</string>
+    <string name="cpufreq_maxwake">CPU Max (Bildschirm an)</string>
+    <string name="cpufreq_maxsleep">CPU Max (Bildschirm aus)</string>
+    <string name="cpufreq_min">CPU Min Frequenz</string>
+    <string name="cpufreq_boot">Boot CPU Frequenz:</string>
+    <string name="cpufreq_boot_info_title">Einstellugen beim Boot</string>
+    <string name="cpufreq_boot_title_max">Max (Bildschirm an/aus): </string>
+    <string name="cpufreq_boot_title_min">Min (idle): </string>
+    <string name="cpufreq_boot_title_default">Kernel-Default wird gesetzt</string>
+    <string name="cpufreq_setboot_title">Beim Booten setzen</string>
+    <string name="cpufreq_setboot_summary">Aktuelle Einstellugnen beim nächten System-Boot setzen</string>
+    <string name="cpufreq_notice_title">Benachrichtigung nach Booten::</string>
+    <string name="cpufreq_notice_summary">CPU Frequenzen nicht gesetzt bis der Bildschirm sich ausgeschaltet hat</string>
 </resources>
